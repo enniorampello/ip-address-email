@@ -56,6 +56,73 @@ AuthMethod=LOGIN
 ```
 
 This configuration basically specifies the SMTP server to use to send emails and the credentials of your gmail address. Remember to "Allow less secure apps" in your gmail setting, otherwise the following commands will not work.
+
+At this point, you can check that your mail system is working by creating a new file that you can call ``message.txt``:
+
+```
+$ vim message.txt
+```
+
+Inside the file, you can write the following content:
+
+```
+Subject: <this is the subject>
+
+<this is line 1 of the body>
+<this is line 2 of the body>
+```
+
+Once you have written the file, you can send yourself an email by running:
+
+```
+ssmtp <any-email-address> < message.txt
+```
+
+Congratulations! You just received an email from your server.
+
+Now, we can move on to dynamically check the IP address and check if it changed.
+
 ## How to schedule the execution of a shell script
 
+In order to keep checking the IP address of the machine, the solution that I decided to implement is to execute a shell file as a cron job and schedule its execution every 5 minutes. So how to do this? Here below are all the steps that you need.
+
+First of all, create a shell file and make sure it is executable. We do this by running the following commands:
+
+```
+$ touch mail.sh
+$ sudo chmod +x mail.sh
+```
+
+Once you have created the file, you can execute whatever you want inside it.
+Now, we can schedule the execution of the file using ``crontab``.
+
+```
+$ crontab -e
+```
+
+I will schedule the execution of our shell script for every 5 minutes by adding the following line in the crontab file:
+
+```
+*/5 * * * * <path-to-your-file>/mail.sh
+```
+
+Now your file will get executed every 5 minutes. Awesome!
+
 ## Putting all together
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
