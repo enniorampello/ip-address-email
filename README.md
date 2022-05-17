@@ -24,8 +24,38 @@ $ curl ifconfig.me
 ```
 
 The output of this command will be something like ``123.123.123.123`` and that is your public IP address.
+
+Now that we know how to get the public IP address, we can see how to send an email from a linux server.
+
 ## How to send an email from an Ubuntu server
 
+There are several ways to send an email from an Ubuntu 20.04 server. The method that I am going to use for this tutorial is to set up a ssmtp server on the linux machine and send emails through the gmail servers. You can install the required tools by running the following commands:
+
+```
+$ sudo apt update
+$ sudo apt install ssmtp
+```
+
+Once everything is installed, you proceed with the configuration of the ssmtp server. In order to proceed, you must edit the file ``/etc/ssmtp/ssmtp.conf`` by using:
+
+```
+$ sudo vim /etc/ssmtp/ssmtp.conf
+```
+
+Inside the file, you have to add the following lines:
+
+```
+root=<your-gmail-address>
+
+mailhub=smtp.gmail.com:587
+AuthUser=<your-gmail-address>
+AuthPass=<your-gmail-password>
+UseTLS=YES
+UseSTARTTLS=YES
+AuthMethod=LOGIN
+```
+
+This configuration basically specifies the SMTP server to use to send emails and the credentials of your gmail address. Remember to "Allow less secure apps" in your gmail setting, otherwise the following commands will not work.
 ## How to schedule the execution of a shell script
 
 ## Putting all together
