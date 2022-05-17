@@ -19,9 +19,9 @@ In this tutorial, whenever I will speak about IP address, I will mean the *publi
 
 In Ubuntu, it is possible to discover the public IP address of the router by simply issuing the following command:
 
-``
+```
 $ curl ifconfig.me
-``
+```
 
 The output of this command will be something like ``123.123.123.123`` and that is your public IP address.
 ## How to send an email from an Ubuntu server
