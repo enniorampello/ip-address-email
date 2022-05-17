@@ -11,4 +11,21 @@ Here I will explain you how to implement a cost-free and resilient solution to t
 
 Let's jump right in!
 
+## How to discover your public IP address
+
+Most of the times, when we talk about IP addresses in local networks we refer to the *local* (or *private*) IP address. This is the address that identifies the machine in the local network. Most of the times this address can change due to the DHCP server that is present in most routers but it is possible to set up a static local IP address if we want to run a server inside the private network. 
+
+In this tutorial, whenever I will speak about IP address, I will mean the *public* address, which is the unique identifier of the router on a global scale. By knowing this IP address, you will be able to access your network from anywhere in the world. However, this address is managed by the ISP that provides internet connection to the router, thus, it might be subject to changes from time to time.
+
+In Ubuntu, it is possible to discover the public IP address of the router by simply issuing the following command:
+
+``
+$ curl ifconfig.me
+``
+
+The output of this command will be something like ``123.123.123.123`` and that is your public IP address.
 ## How to send an email from an Ubuntu server
+
+## How to schedule the execution of a shell script
+
+## Putting all together
