@@ -110,19 +110,30 @@ Now your file will get executed every 5 minutes. Awesome!
 
 ## Putting all together
 
+For the final part of this tutorial, it is time to write the content of the file ``mail.sh``, that we created before.
 
+So, here is a small script that will check the current IP address and compares it with the one obtained by the previous check. Then, if the IP address has changed, it sends an email notification that contains the new IP address.
 
+```
+#!/bin/bash
+# check and send ip address to email
 
+MYIP=`curl ifconfig.me`;
+TIME=`date`;
 
+LASTIPFILE='<path-of-choice>/.last_ip_addr';
+LASTIP=`cat ${LASTIPFILE}`;
 
+if [[ ${MYIP} != ${LASTIP} ]]
+then
+        echo "New IP = ${MYIP}"
+        echo "sending email.."
+        echo -e "Hello\n\nTimestamp = ${TIME}\nIP = ${MYIP}\n\nBye" | \
+                ssmtp -s "[INFO] New IP" <any-email-address>;
+        echo ${MYIP} > ${LASTIPFILE};
+else
+        echo "no IP change!"
+fi
+```
 
-
-
-
-
-
-
-
-
-
-
+And that is it! Congratulations for coming this far, I hope it was worth [it](https://www.memecreator.org/meme/is-it-really-worth-it/).
