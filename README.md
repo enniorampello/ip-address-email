@@ -11,6 +11,8 @@ Here I will explain you how to implement a cost-free and resilient solution to t
 
 Let's jump right in!
 
+![image](https://user-images.githubusercontent.com/48623568/168865434-7a640714-9d67-43e3-bd4c-df5130635e6f.jpeg)
+
 ## How to discover your public IP address
 
 Most of the times, when we talk about IP addresses in local networks we refer to the *local* (or *private*) IP address. This is the address that identifies the machine in the local network. Most of the times this address can change due to the DHCP server that is present in most routers but it is possible to set up a static local IP address if we want to run a server inside the private network. 
