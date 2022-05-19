@@ -138,4 +138,4 @@ else
 fi
 ```
 
-And that is it! Congratulations for coming this far, I hope it was worth [it](https://www.memecreator.org/meme/is-it-really-worth-it/).
+And that is it! Congratulations for coming this far, I hope it was worth [it](https://memecreator.org/static/images/memes/4774382.jpg).
