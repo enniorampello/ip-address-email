@@ -80,6 +80,8 @@ Once you have written the file, you can send yourself an email by running:
 ssmtp <any-email-address> < message.txt
 ```
 
+Just replace `<any-email-address>` with the email address to which you would like to receive the test email.
+
 Congratulations! You just received an email from your server.
 
 Now, we can move on to dynamically check the IP address and check if it changed.
@@ -123,19 +125,26 @@ So, here is a small script that will check the current IP address and compares i
 MYIP=`curl ifconfig.me`;
 TIME=`date`;
 
+MESSAGEFILE='<path-of-choice>/message.txt';
 LASTIPFILE='<path-of-choice>/.last_ip_addr';
 LASTIP=`cat ${LASTIPFILE}`;
 
 if [[ ${MYIP} != ${LASTIP} ]]
 then
-        echo "New IP = ${MYIP}"
-        echo "sending email.."
-        echo -e "Hello\n\nTimestamp = ${TIME}\nIP = ${MYIP}\n\nBye" | \
-                ssmtp -s "[INFO] New IP" <any-email-address>;
+        echo "Subject: IP address change" > ${MESSAGEFILE}
+        echo "New IP = ${MYIP}" >> ${MESSAGEFILE}
+        ssmtp <any-email-address> < ${MESSAGEFILE};
         echo ${MYIP} > ${LASTIPFILE};
 else
         echo "no IP change!"
 fi
 ```
+
+In order to use this file, you have to first choose the path where it is going to be executed (`<path-of-choice>`) and where it is going to write the auxiliary files for its execution. Then, the script will perform the following steps:
+1. Store the current public IP address (`MYIP=curl ifconfig.me;`)
+2. Store the IP address at the time of the previous execution of the script (`LASTIP=cat ${LASTIPFILE};`)
+3. Compare the current IP address with the last IP address and:
+        1. If they are equal no operations will be executed.
+        2. If they are different an email will be sent to the specified email address (`ssmtp <any-email-address> < ${MESSAGEFILE};`, where you should substitute `<any-email-address>` with your own email address).
 
 And that is it! Congratulations for coming this far, I hope it was worth [it](https://memecreator.org/static/images/memes/4774382.jpg).
